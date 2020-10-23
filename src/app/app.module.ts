@@ -10,9 +10,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { LoginComponent } from './login/login.component';
-import { UserFormsModule } from './user-forms-module/user-forms.module';
 import { TokenInterceptor } from './auth/token.interceptor';
+import { UserFormsModule } from './pages/user-forms-page/user-forms.module';
+import { LoginComponent } from './pages/login/login.component';
 
 
 @NgModule({
