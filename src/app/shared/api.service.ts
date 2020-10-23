@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -12,5 +13,11 @@ export class ApiService {
   constructor(
     private http: HttpClient
   ) { }
+
+  public getFormList(): Observable<FormList> {
+    const url = this.baseUrl + '/form_fields';
+    return this.http.get<FormList>(url);
+  }
+
 
 }
