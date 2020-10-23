@@ -10,7 +10,7 @@
             <input matInput [type]="hideShowPasswordIcon ? 'password' : 'text'" [formControl]="password">
             <button mat-icon-button matSuffix (click)="hideShowPasswordIcon = !hideShowPasswordIcon"
                 [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideShowPasswordIcon">
-                <mat-icon>{{hideShowPasswordIcon ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-icon>{{ hideShowPasswordIcon ? 'visibility_off' : 'visibility' }}</mat-icon>
             </button>
         </mat-form-field>
         <button mat-stroked-button color="primary" class="d-block ml-auto">Login</button>
