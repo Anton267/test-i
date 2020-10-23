@@ -11,7 +11,6 @@ export class AuthService {
 
   private readonly JWT_TOKEN = '';
   private readonly REFRESH_TOKEN = '';
-  private loggedUser: string;
   private readonly baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
@@ -59,13 +58,12 @@ export class AuthService {
   }
 
   private doLoginUser(username: string, tokens: Tokens): void {
-    console.log(username, tokens);
-    this.loggedUser = username;
+    localStorage.setItem('userEmail', username);
     this.storeTokens(tokens);
   }
 
   private doLogoutUser(): void {
-    this.loggedUser = null;
+    localStorage.removeItem('userEmail');
     this.removeTokens();
   }
 
