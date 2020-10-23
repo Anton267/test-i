@@ -29,5 +29,10 @@ export class ApiService {
     return this.http.post<CreateForm>(url, body);
   }
 
+  public formId(id: number | string): Observable<FormId> {
+    const url = this.baseUrl + `/forms/${id}`;
+    return this.http.get<FormId>(url);
+  }
+
 
 }
