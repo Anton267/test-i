@@ -34,5 +34,9 @@ export class ApiService {
     return this.http.get<CreateForm>(url);
   }
 
+  public updateForm(body: CreateFormBody, id: number): Observable<CreateForm> {
+    const url = this.baseUrl + `/forms/${id}`;
+    return this.http.post<CreateForm>(url, body);
+  }
 
 }
