@@ -19,5 +19,10 @@ export class ApiService {
     return this.http.get<FormList>(url);
   }
 
+  public getForms(): Observable<Form> {
+    const url = this.baseUrl + '/forms';
+    return this.http.get<Form>(url);
+  }
+
 
 }

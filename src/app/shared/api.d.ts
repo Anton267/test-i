@@ -23,3 +23,34 @@ type FormList = {
         search: string
     }
 };
+
+type Form = {
+    data: [
+        {
+            id: number,
+            user_id: number,
+            type: string,
+            form_field_values: [
+                {
+                    id: number,
+                    form_field_id: number,
+                    type: string,
+                    value: string,
+                    created_at: string,
+                    updated_at: string
+                }
+            ],
+            created_at: string,
+            updated_at: string
+        }
+    ],
+    meta: {
+        page: number,
+        per_page: number,
+        total_items_count: number,
+        pages_count: number,
+        order_by: string,
+        order_direction: string,
+        search: string
+    }
+}
