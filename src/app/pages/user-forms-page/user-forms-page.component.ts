@@ -9,11 +9,14 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class UserFormsPageComponent implements OnInit {
 
+  public userEmail: string;
+
   constructor(
     private authService: AuthService,
     private router: Router,
-  ) { }
-
+  ) { 
+    this.userEmail = localStorage.getItem('userEmail');
+   }
 
   logout(): void {
     this.authService.logout()
