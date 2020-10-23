@@ -83,23 +83,3 @@ type CreateFormBody = {
         }
     ]
 };
-
-type FormId = {
-    data: {
-        id: number,
-        user_id: number,
-        type: string,
-        form_field_values: [
-            {
-                id: number,
-                form_field_id: number,
-                type: string,
-                value: string,
-                created_at: string,
-                updated_at: string
-            }
-        ],
-        created_at: string,
-        updated_at: string
-    }
-}
