@@ -17,6 +17,6 @@
             <mat-error *ngIf="password.invalid && password.errors?.minlength">Password min length is
                 {{ password.errors.minlength.requiredLength }}</mat-error>
         </mat-form-field>
-        <button mat-stroked-button color="primary" class="login-button d-block ml-auto">Login</button>
+        <button mat-stroked-button color="primary" class="login-button d-block ml-auto" (click)="login()">Login</button>
     </form>
 </div>
