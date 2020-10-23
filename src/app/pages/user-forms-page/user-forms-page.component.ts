@@ -14,11 +14,11 @@ export class UserFormsPageComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-  ) { 
+  ) {
     this.userEmail = localStorage.getItem('userEmail');
-   }
+  }
 
-  logout(): void {
+  public logout(): void {
     this.authService.logout()
       .subscribe(success => {
         if (success) {
@@ -28,6 +28,7 @@ export class UserFormsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
 }
