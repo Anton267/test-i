@@ -6,6 +6,7 @@ import { MaterialModule } from 'src/app/material.module';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { UserTableComponent } from './user-table/user-table.component';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { UserTableComponent } from './user-table/user-table.component';
     MaterialModule,
     MatTableModule,
     MatPaginatorModule,
+    MatSortModule,
   ]
 })
 export class UserFormsModule { }
