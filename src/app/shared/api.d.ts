@@ -24,7 +24,7 @@ type FormList = {
     }
 };
 
-type Form = {
+type Forms = {
     data: [
         {
             id: number,
@@ -55,7 +55,7 @@ type Form = {
     }
 };
 
-type CreateForm = {
+type Form = {
     data: {
         id: number,
         user_id: number,

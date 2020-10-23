@@ -19,24 +19,24 @@ export class ApiService {
     return this.http.get<FormList>(url);
   }
 
-  public getForms(): Observable<Form> {
+  public getForms(): Observable<Forms> {
     const url = this.baseUrl + '/forms';
+    return this.http.get<Forms>(url);
+  }
+
+  public createForm(body: CreateFormBody): Observable<Form> {
+    const url = this.baseUrl + '/forms';
+    return this.http.post<Form>(url, body);
+  }
+
+  public formId(id: number | string): Observable<Form> {
+    const url = this.baseUrl + `/forms/${id}`;
     return this.http.get<Form>(url);
   }
 
-  public createForm(body: CreateFormBody): Observable<CreateForm> {
-    const url = this.baseUrl + '/forms';
-    return this.http.post<CreateForm>(url, body);
-  }
-
-  public formId(id: number | string): Observable<CreateForm> {
+  public updateForm(body: CreateFormBody, id: number): Observable<Form> {
     const url = this.baseUrl + `/forms/${id}`;
-    return this.http.get<CreateForm>(url);
-  }
-
-  public updateForm(body: CreateFormBody, id: number): Observable<CreateForm> {
-    const url = this.baseUrl + `/forms/${id}`;
-    return this.http.post<CreateForm>(url, body);
+    return this.http.post<Form>(url, body);
   }
 
   public deleteForm(id: number | string): Observable<void> {
