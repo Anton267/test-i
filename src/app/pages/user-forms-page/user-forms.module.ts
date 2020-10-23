@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserFormsPageComponent } from '../user-forms-page/user-forms-page.component';
 import { UserFormsRoutingModule } from './user-forms-routing.module';
-import { MatToolbarModule } from '@angular/material/toolbar';
-
-
+import { MaterialModule } from 'src/app/material.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   imports: [
     CommonModule,
     UserFormsRoutingModule,
-    MatToolbarModule,
+    MaterialModule,
   ]
 })
 export class UserFormsModule { }
