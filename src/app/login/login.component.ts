@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   public form: FormGroup;
+  public hideShowPasswordIcon = true;
 
   constructor(
     private fb: FormBuilder,
