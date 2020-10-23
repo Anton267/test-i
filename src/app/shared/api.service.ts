@@ -24,5 +24,10 @@ export class ApiService {
     return this.http.get<Form>(url);
   }
 
+  public createForm(body: CreateFormBody): Observable<CreateForm> {
+    const url = this.baseUrl + '/forms';
+    return this.http.post<CreateForm>(url, body);
+  }
+
 
 }
