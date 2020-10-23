@@ -53,4 +53,33 @@ type Form = {
         order_direction: string,
         search: string
     }
-}
+};
+
+type CreateForm = {
+    data: {
+        id: number,
+        user_id: number,
+        type: string,
+        form_field_values: [
+            {
+                id: number,
+                form_field_id: number,
+                type: string,
+                value: string,
+                created_at: string,
+                updated_at: string
+            }
+        ],
+        created_at: string,
+        updated_at: string
+    }
+};
+
+type CreateFormBody = {
+    form_field_values: [
+        {
+            form_field_id: number,
+            value: string
+        }
+    ]
+};
