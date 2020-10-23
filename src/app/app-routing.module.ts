@@ -4,8 +4,12 @@ import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
-    path: '', component: LoginComponent
-  }
+    path: 'login', component: LoginComponent
+  },
+  {
+    path: 'user', loadChildren: () => import('./user-forms/user-forms.module')
+      .then(m => m.UserFormsModule)
+  },
 ];
 
 @NgModule({
