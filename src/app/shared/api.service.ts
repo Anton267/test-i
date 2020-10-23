@@ -39,4 +39,9 @@ export class ApiService {
     return this.http.post<CreateForm>(url, body);
   }
 
+  public deleteForm(id: number | string): Observable<void> {
+    const url = this.baseUrl + `/forms/${id}`;
+    return this.http.delete<void>(url);
+  }
+
 }
