@@ -11,7 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { LoginComponent } from './login/login.component';
-import { UserFormsModule } from './user-forms/user-forms.module';
+import { UserFormsModule } from './user-forms-module/user-forms.module';
 
 
 @NgModule({

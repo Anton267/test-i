@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '', component: LoginComponent
   },
   {
-    path: 'user', loadChildren: () => import('./user-forms/user-forms.module')
+    path: 'user', loadChildren: () => import('./user-forms-module/user-forms.module')
       .then(m => m.UserFormsModule)
   },
 ];
