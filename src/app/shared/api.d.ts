@@ -94,3 +94,17 @@ type FormValues = {
     created_at: string,
     updated_at: string
 };
+
+type Errors = {
+    error: {
+        errors: [
+            code: null,
+            id: string,
+            meta: [{
+                description: string
+            }],
+            status: number,
+            title: string,
+        ]
+    }
+};
