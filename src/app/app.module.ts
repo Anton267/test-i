@@ -9,7 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { UserFormsModule } from './pages/user-forms-page/user-forms.module';
 import { LoginComponent } from './pages/login/login.component';
-import { MaterialModule } from './material.module';
+import { MaterialModule } from './shared-modules/material.module';
+import { SharedModule } from './shared-modules/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,10 +22,9 @@ import { MaterialModule } from './material.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
     UserFormsModule,
     MaterialModule,
+    SharedModule,
   ],
   providers: [
     {
