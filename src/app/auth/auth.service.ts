@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 import { catchError, mapTo, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +14,25 @@ export class AuthService {
   private readonly REFRESH_TOKEN = '';
   private readonly baseUrl = environment.baseUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private toastr: ToastrService
+  ) { }
 
   login(user: { email: string, password: string }): Observable<boolean> {
     return this.http.post<User>(`${this.baseUrl}/auth/login`, user)
       .pipe(
         tap(tokens => this.doLoginUser(user.email, tokens)),
         mapTo(true),
-        catchError(error => {
-          console.error(error.error);
+        catchError(err => {
+          let error: string;
+          try {
+            error = err.error.errors[0].title;
+          } catch (error) {
+            error = null;
+          }
+          console.error(error);
+          this.toastr.error(error, 'Error');
           return of(false);
         }));
   }
