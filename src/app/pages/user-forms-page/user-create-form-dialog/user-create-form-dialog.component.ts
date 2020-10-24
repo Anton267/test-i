@@ -27,7 +27,7 @@ export class UserCreateFormDialogComponent {
   }
 
   public create(): void {
-    const body = { form_field_values: [{ form_field_id: 1, value: this.value.value }] };
+    const body = { form_field_values: [{ form_field_id: 1, value: this.userCreateForm.value }] };
     this.api.createForm(body).subscribe(e => {
       console.log(e);
       this.isHasChanges = true;
@@ -36,7 +36,7 @@ export class UserCreateFormDialogComponent {
   }
 
   public updateForm(): void {
-    const body = { form_field_values: [{ form_field_id: this.data.formId, value: this.value.value }] };
+    const body = { form_field_values: [{ form_field_id: this.data.formId, value: this.userCreateForm.value }] };
     this.api.updateForm(body, this.data.fieldId).subscribe(e => {
       console.log(e);
       this.isHasChanges = true;
@@ -48,9 +48,9 @@ export class UserCreateFormDialogComponent {
     this.dialogRef.close(this.isHasChanges);
   }
 
-  public get value(): AbstractControl {
-    return this.userCreateForm.get('value');
-  }
+  // public get value(): AbstractControl {
+  //   return this.userCreateForm.get('value');
+  // }
 
 }
 

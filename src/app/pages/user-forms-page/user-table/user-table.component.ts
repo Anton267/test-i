@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/shared/api.service';
+import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
 import { UserCreateFormDialogComponent } from '../user-create-form-dialog/user-create-form-dialog.component';
 import { UserDialogComponent } from '../user-dialog/user-dialog.component';
 
@@ -77,7 +78,13 @@ export class UserTableComponent implements OnInit {
   }
 
   public deleteForm(id: number): void {
-    this.api.deleteForm(id).subscribe(() => this.getForms());
+    this.dialog.open(DialogConfirmComponent, {
+      minWidth: '50vw'
+    }).afterClosed().subscribe(res => {
+      if (res) {
+        this.api.deleteForm(id).subscribe(() => this.getForms());
+      }
+    });
   }
 
   private setPaginator(perPage: number, pagesCount: number): void {
