@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ApiService } from 'src/app/shared/api.service';
 
 @Component({
   selector: 'app-user-dialog',
@@ -13,7 +14,9 @@ export class UserDialogComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: FormValues,
-    fb: FormBuilder
+    public dialogRef: MatDialogRef<UserDialogComponent>,
+    fb: FormBuilder,
+    private api: ApiService,
   ) {
     this.userForm = fb.group({
       id: ['', [Validators.required]],
@@ -27,6 +30,12 @@ export class UserDialogComponent implements OnInit {
       created_at: [{ value: '', disabled: true }],
       updated_at: [{ value: '', disabled: true }],
     });
+  }
+
+  public saveChanges(): void {
+    const body = { form_field_values: [{ form_field_id: 5, value: 'string' }] };
+    this.api.updateForm(body, this.id.value).subscribe(e => console.log(e))
+    // this.dialogRef.close();
   }
 
   public get id(): AbstractControl {
