@@ -76,12 +76,10 @@ type Form = {
 };
 
 type CreateFormBody = {
-    form_field_values: [
-        {
-            form_field_id: number,
-            value: string
-        }
-    ]
+    form_field_values: Array<{
+        form_field_id: number,
+        value: string
+    }>
 };
 
 type FormValues = {
