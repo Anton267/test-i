@@ -49,6 +49,7 @@ export class UserTableComponent implements OnInit {
   public openDialog(formValue: FormValues): void {
     this.dialog.open(UserDialogComponent, {
       width: '80vw',
+      maxWidth: '600px',
       data: { ...formValue }
     }).afterClosed().subscribe(res => {
       if (res) {
