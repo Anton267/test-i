@@ -36,13 +36,14 @@ export class UserTableComponent implements OnInit {
     private toastr: ToastrService
   ) { }
 
+  public deleteForm(id: string | number): void {
+    this.api.deleteForm(id).subscribe(e => this.getForms());
+  }
+
   public openDialog(formValue: FormValues): void {
-    const dialogRef = this.dialog.open(UserDialogComponent, {
+    this.dialog.open(UserDialogComponent, {
       width: '80vw',
       data: { ...formValue }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -54,8 +55,8 @@ export class UserTableComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.api.getFormList().pipe(
+  private getForms(): void {
+    this.api.getForms().pipe(
       catchError((err: Errors) => {
         let error: string;
         try {
@@ -73,8 +74,31 @@ export class UserTableComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+  }
+
+  ngOnInit(): void {
+    // this.api.getFormList().pipe(
+    //   catchError((err: Errors) => {
+    //     let error: string;
+    //     try {
+    //       error = err.error.errors[0].title;
+    //     } catch (error) {
+    //       error = null;
+    //     }
+    //     console.error(error);
+    //     this.toastr.error(error, 'Error');
+    //     return of(null);
+    //   })
+    // ).subscribe(formList => {
+    //   console.log(formList);
+    //   this.dataSource = new MatTableDataSource(formList.data);
+    //   this.dataSource.paginator = this.paginator;
+    //   this.dataSource.sort = this.sort;
+    // });
+    this.getForms();
     // const body = { form_field_values: [{ form_field_id: 33, value: 'TEST VALUE' }] };
     // this.api.createForm(body).subscribe(e => console.log(e));
+    // this.api.getForms().subscribe(e => console.log(e));
   }
 
 }

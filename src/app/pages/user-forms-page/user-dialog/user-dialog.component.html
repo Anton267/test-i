@@ -1,63 +1,16 @@
 <h2 mat-dialog-title>User-dialog</h2>
 <mat-dialog-content class="mat-typography">
     <form [formGroup]="userForm" class="user-form w-100">
-        <!-- id -->
-        <mat-form-field appearance="fill" class="d-block mb-3">
-            <mat-label>Enter id</mat-label>
-            <input matInput placeholder="id" [formControl]="id">
-            <mat-error *ngIf="id.invalid && id.errors?.required">Id is required</mat-error>
-        </mat-form-field>
-        <!-- title -->
-        <mat-form-field appearance="fill" class="d-block mb-3">
-            <mat-label>Enter title</mat-label>
-            <input matInput placeholder="Title" [formControl]="title">
-            <mat-error *ngIf="title.invalid && title.errors?.required">Title is required</mat-error>
-        </mat-form-field>
-        <!-- type -->
-        <mat-form-field appearance="fill" class="d-block mb-3">
-            <mat-label>Enter type</mat-label>
-            <input matInput placeholder="Type" [formControl]="type">
-        </mat-form-field>
-        <!-- min -->
-        <mat-form-field appearance="fill" class="d-block mb-3">
-            <mat-label>Enter min value</mat-label>
-            <input matInput placeholder="Min" [formControl]="min">
-        </mat-form-field>
-        <!-- min -->
-        <mat-form-field appearance="fill" class="d-block mb-3">
-            <mat-label>Enter max value</mat-label>
-            <input matInput placeholder="Max" [formControl]="max">
-        </mat-form-field>
-        <!-- max_length -->
-        <mat-form-field appearance="fill" class="d-block mb-3">
-            <mat-label>Enter max length</mat-label>
-            <input matInput placeholder="Max length" [formControl]="max_length">
-        </mat-form-field>
-        <!-- order -->
-        <mat-form-field appearance="fill" class="d-block mb-3">
-            <mat-label>Enter order</mat-label>
-            <input matInput placeholder="Order" [formControl]="order">
-            <mat-error *ngIf="order.invalid && order.errors?.required">Order is required</mat-error>
-        </mat-form-field>
-        <div class="d-flex align-items-center">
-            <!-- createdAt -->
-            <mat-form-field appearance="fill">
-                <mat-label>Created At</mat-label>
-                <input matInput placeholder="Created At" [formControl]="createdAt"
-                    [value]="createdAt.value | date: 'M/d/yy, H:mm'">
+        <div *ngFor="let form of userForm.controls; let i=index" class="d-flex align-items-baseline">
+            <mat-form-field appearance="fill" class="w-100 mb-3">
+                <mat-label>Enter value</mat-label>
+                <input matInput [formControlName]="i">
+                <mat-error *ngIf="form.invalid && form.errors?.required">Required</mat-error>
             </mat-form-field>
-            <!-- updatedAt -->
-            <mat-form-field appearance="fill">
-                <mat-label>Updated At</mat-label>
-                <input matInput placeholder="Updated At" [formControl]="updatedAt"
-                    [value]="updatedAt.value | date: 'M/d/yy, H:mm'">
-            </mat-form-field>
-            <!-- isRequired -->
-            <mat-slide-toggle [formControl]="isRequired" class="ml-4">Is Required</mat-slide-toggle>
+            <button mat-button [disabled]="form.invalid" (click)="saveChanges(form, i)">Save changes</button>
         </div>
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
-    <button mat-button [disabled]="userForm.invalid" (click)="saveChanges()">Save changes</button>
+    <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
 </mat-dialog-actions>
