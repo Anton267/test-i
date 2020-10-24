@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { ApiService } from 'src/app/shared/api.service';
 
 @Component({
@@ -10,10 +11,12 @@ import { ApiService } from 'src/app/shared/api.service';
 export class UserCreateFormDialogComponent {
 
   public userCreateForm: FormGroup;
+  private isHasChanges = false;
 
   constructor(
     fb: FormBuilder,
     private api: ApiService,
+    public dialogRef: MatDialogRef<UserCreateFormDialogComponent>,
   ) {
     this.userCreateForm = fb.group({
       id: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
@@ -26,7 +29,12 @@ export class UserCreateFormDialogComponent {
     this.api.createForm(body).subscribe(e => {
       console.log(e);
       this.userCreateForm.reset();
+      this.isHasChanges = true;
     });
+  }
+
+  public closeDialog(): void {
+    this.dialogRef.close(this.isHasChanges);
   }
 
   public get id(): AbstractControl {

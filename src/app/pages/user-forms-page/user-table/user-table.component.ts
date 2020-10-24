@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ApiService } from 'src/app/shared/api.service';
+import { UserCreateFormDialogComponent } from '../user-create-form-dialog/user-create-form-dialog.component';
 import { UserDialogComponent } from '../user-dialog/user-dialog.component';
 
 @Component({
@@ -36,8 +37,14 @@ export class UserTableComponent implements OnInit {
     private toastr: ToastrService
   ) { }
 
-  public deleteForm(id: string | number): void {
-    this.api.deleteForm(id).subscribe(() => this.getForms());
+  public openNewFormDialog(): void {
+    this.dialog.open(UserCreateFormDialogComponent, {
+      minWidth: '50vw'
+    }).afterClosed().subscribe(res => {
+      if (res) {
+        this.getForms();
+      }
+    });
   }
 
   public openDialog(formValue: FormValues): void {
@@ -78,6 +85,10 @@ export class UserTableComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+  }
+
+  public deleteForm(id: string | number): void {
+    this.api.deleteForm(id).subscribe(() => this.getForms());
   }
 
   ngOnInit(): void {
