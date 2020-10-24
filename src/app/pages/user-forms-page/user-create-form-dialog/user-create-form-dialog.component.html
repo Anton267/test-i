@@ -1,1 +1,21 @@
-<p>user-create-form-dialog works!</p>
+<h2 mat-dialog-title>User create form dialog</h2>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="userCreateForm" class="user-form w-100">
+        <!-- id -->
+        <mat-form-field appearance="fill" class="d-block mb-3">
+            <mat-label>Enter id</mat-label>
+            <input matInput placeholder="id" [formControl]="id">
+            <mat-error *ngIf="id.invalid && id.errors?.required">Id is required</mat-error>
+        </mat-form-field>
+        <!-- title -->
+        <mat-form-field appearance="fill" class="d-block mb-3">
+            <mat-label>Enter value</mat-label>
+            <input matInput placeholder="Value" [formControl]="value">
+            <mat-error *ngIf="value.invalid && value.errors?.required">Value is required</mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+    <button mat-button [disabled]="userCreateForm.invalid" (click)="createForm()">Create Form</button>
+</mat-dialog-actions>

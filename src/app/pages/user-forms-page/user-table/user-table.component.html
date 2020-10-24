@@ -1,52 +1,49 @@
-<div class="container">
-    <mat-form-field class="w-100 mt-4">
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Enter name" #input>
-    </mat-form-field>
-    <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="w-100">
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-            <td mat-cell *matCellDef="let row"> {{ row.id }} </td>
-        </ng-container>
+<mat-form-field class="w-100 mt-4">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Enter name" #input>
+</mat-form-field>
+<table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="w-100">
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{ row.id }} </td>
+    </ng-container>
 
-        <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
-            <td mat-cell *matCellDef="let row"> {{ row.title }} </td>
-        </ng-container>
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+        <td mat-cell *matCellDef="let row"> {{ row.title }} </td>
+    </ng-container>
 
-        <ng-container matColumnDef="type">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
-            <td mat-cell *matCellDef="let row"> {{ row.type }} </td>
-        </ng-container>
+    <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+        <td mat-cell *matCellDef="let row"> {{ row.type }} </td>
+    </ng-container>
 
-        <ng-container matColumnDef="updated_at">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Updated At </th>
-            <td mat-cell *matCellDef="let row" [style.color]="row.updated_at"> {{row.updated_at | date: 'M/d/yy, H:mm'}}
-            </td>
-        </ng-container>
+    <ng-container matColumnDef="updated_at">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Updated At </th>
+        <td mat-cell *matCellDef="let row" [style.color]="row.updated_at"> {{row.updated_at | date: 'M/d/yy, H:mm'}}
+        </td>
+    </ng-container>
 
-        <ng-container matColumnDef="expandedDetail">
-            <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-                <div class="element-detail d-flex"
-                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                    <div class="opened-element d-flex">
-                        <button mat-stroked-button color="primary" class="mr-3" (click)="openDialog(element)">View</button>
-                        <button mat-stroked-button color="accent" class="mr-3">Edit</button>
-                        <button mat-stroked-button color="warn" class="delete-button"><span>Delete</span>
-                            <mat-icon>delete_outline</mat-icon>
-                        </button>
-                    </div>
+    <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+            <div class="element-detail d-flex" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                <div class="opened-element d-flex">
+                    <button mat-stroked-button color="primary" class="mr-3" (click)="openDialog(element)">View</button>
+                    <button mat-stroked-button color="accent" class="mr-3">Edit</button>
+                    <button mat-stroked-button color="warn" class="delete-button"><span>Delete</span>
+                        <mat-icon>delete_outline</mat-icon>
+                    </button>
                 </div>
-            </td>
-        </ng-container>
+            </div>
+        </td>
+    </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="element-row"
-            [class.expanded-row]="expandedElement === element"
-            (click)="expandedElement = expandedElement === element ? null : element">
-        </tr>
-        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="element-row"
+        [class.expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
 
-    </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-</div>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
