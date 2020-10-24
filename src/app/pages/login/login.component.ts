@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/auth/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.sass']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   public form: FormGroup;
   public hideShowPasswordIcon = true;
@@ -39,9 +39,6 @@ export class LoginComponent implements OnInit {
 
   public get password(): AbstractControl {
     return this.form.get('password');
-  }
-
-  ngOnInit(): void {
   }
 
 }
