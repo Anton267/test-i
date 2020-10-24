@@ -83,3 +83,16 @@ type CreateFormBody = {
         }
     ]
 };
+
+type FormValues = {
+    id: number,
+    title: string,
+    type: string,
+    min: number,
+    max: number,
+    max_length: number,
+    is_required: true,
+    order: number,
+    created_at: string,
+    updated_at: string
+};

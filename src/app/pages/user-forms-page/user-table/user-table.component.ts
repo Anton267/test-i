@@ -32,9 +32,9 @@ export class UserTableComponent implements OnInit {
     public dialog: MatDialog,
   ) { }
 
-  public openDialog(row): void {
+  public openDialog(formValue: FormValues): void {
     const dialogRef = this.dialog.open(UserDialogComponent, {
-      data: { ...row }
+      data: { ...formValue }
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

@@ -8,10 +8,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class UserDialogComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: FormValues) { }
 
   ngOnInit(): void {
-    console.log(this.data)
+    console.log(this.data);
   }
 
 }
