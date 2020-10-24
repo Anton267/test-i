@@ -13,8 +13,8 @@ import { UserDialogComponent } from '../user-dialog/user-dialog.component';
   styleUrls: ['./user-table.component.sass'],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
@@ -32,8 +32,10 @@ export class UserTableComponent implements OnInit {
     public dialog: MatDialog,
   ) { }
 
-  public openDialog(): void {
-    const dialogRef = this.dialog.open(UserDialogComponent);
+  public openDialog(row): void {
+    const dialogRef = this.dialog.open(UserDialogComponent, {
+      data: { ...row }
+    });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
