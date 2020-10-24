@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -16,14 +16,14 @@ export class UserDialogComponent implements OnInit {
     fb: FormBuilder
   ) {
     this.userForm = fb.group({
-      id: [''],
-      title: [''],
+      id: ['', [Validators.required]],
+      title: ['', [Validators.required]],
       type: [''],
       min: [''],
       max: [''],
       max_length: [''],
       is_required: [''],
-      order: [''],
+      order: ['', [Validators.required]],
       created_at: [{ value: '', disabled: true }],
       updated_at: [{ value: '', disabled: true }],
     });

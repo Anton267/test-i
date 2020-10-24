@@ -5,50 +5,39 @@
         <mat-form-field appearance="fill" class="d-block mb-3">
             <mat-label>Enter id</mat-label>
             <input matInput placeholder="id" [formControl]="id">
-            <!-- <mat-error *ngIf="email.invalid && email.errors?.required">Email is required</mat-error> -->
-            <!-- <mat-error *ngIf="email.invalid && email.errors?.email">Email is not valid</mat-error> -->
+            <mat-error *ngIf="id.invalid && id.errors?.required">Id is required</mat-error>
         </mat-form-field>
         <!-- title -->
         <mat-form-field appearance="fill" class="d-block mb-3">
             <mat-label>Enter title</mat-label>
             <input matInput placeholder="Title" [formControl]="title">
-            <!-- <mat-error *ngIf="email.invalid && email.errors?.required">Email is required</mat-error> -->
-            <!-- <mat-error *ngIf="email.invalid && email.errors?.email">Email is not valid</mat-error> -->
+            <mat-error *ngIf="title.invalid && title.errors?.required">Title is required</mat-error>
         </mat-form-field>
         <!-- type -->
         <mat-form-field appearance="fill" class="d-block mb-3">
             <mat-label>Enter type</mat-label>
             <input matInput placeholder="Type" [formControl]="type">
-            <!-- <mat-error *ngIf="email.invalid && email.errors?.required">Email is required</mat-error> -->
-            <!-- <mat-error *ngIf="email.invalid && email.errors?.email">Email is not valid</mat-error> -->
         </mat-form-field>
         <!-- min -->
         <mat-form-field appearance="fill" class="d-block mb-3">
             <mat-label>Enter min value</mat-label>
             <input matInput placeholder="Min" [formControl]="min">
-            <!-- <mat-error *ngIf="email.invalid && email.errors?.required">Email is required</mat-error> -->
-            <!-- <mat-error *ngIf="email.invalid && email.errors?.email">Email is not valid</mat-error> -->
         </mat-form-field>
         <!-- min -->
         <mat-form-field appearance="fill" class="d-block mb-3">
             <mat-label>Enter max value</mat-label>
             <input matInput placeholder="Max" [formControl]="max">
-            <!-- <mat-error *ngIf="email.invalid && email.errors?.required">Email is required</mat-error> -->
-            <!-- <mat-error *ngIf="email.invalid && email.errors?.email">Email is not valid</mat-error> -->
         </mat-form-field>
         <!-- max_length -->
         <mat-form-field appearance="fill" class="d-block mb-3">
             <mat-label>Enter max length</mat-label>
             <input matInput placeholder="Max length" [formControl]="max_length">
-            <!-- <mat-error *ngIf="email.invalid && email.errors?.required">Email is required</mat-error> -->
-            <!-- <mat-error *ngIf="email.invalid && email.errors?.email">Email is not valid</mat-error> -->
         </mat-form-field>
         <!-- order -->
         <mat-form-field appearance="fill" class="d-block mb-3">
             <mat-label>Enter order</mat-label>
             <input matInput placeholder="Order" [formControl]="order">
-            <!-- <mat-error *ngIf="email.invalid && email.errors?.required">Email is required</mat-error> -->
-            <!-- <mat-error *ngIf="email.invalid && email.errors?.email">Email is not valid</mat-error> -->
+            <mat-error *ngIf="order.invalid && order.errors?.required">Order is required</mat-error>
         </mat-form-field>
         <div class="d-flex align-items-center">
             <!-- createdAt -->
@@ -69,6 +58,6 @@
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Save</button>
+    <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" [disabled]="userForm.invalid">Save changes</button>
 </mat-dialog-actions>
