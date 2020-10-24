@@ -25,7 +25,7 @@ import { UserDialogComponent } from '../user-dialog/user-dialog.component';
 export class UserTableComponent implements OnInit {
 
   public dataSource: MatTableDataSource<any>;
-  public displayedColumns: string[] = ['id', 'title', 'type', 'updated_at'];
+  public displayedColumns: string[] = ['id', 'type', 'created_at', 'updated_at'];
   @ViewChild(MatPaginator) public paginator: MatPaginator;
   @ViewChild(MatSort) public sort: MatSort;
   public expandedElement: string;
