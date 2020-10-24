@@ -24,8 +24,8 @@ export class UserDialogComponent implements OnInit {
       max_length: [''],
       is_required: [''],
       order: [''],
-      created_at: [''],
-      updated_at: [''],
+      created_at: [{ value: '', disabled: true }],
+      updated_at: [{ value: '', disabled: true }],
     });
   }
 
@@ -69,9 +69,9 @@ export class UserDialogComponent implements OnInit {
     return this.userForm.get('updated_at');
   }
 
-
   ngOnInit(): void {
     console.log(this.data);
+    this.userForm.patchValue(this.data);
   }
 
 }

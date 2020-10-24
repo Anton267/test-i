@@ -1,13 +1,71 @@
 <h2 mat-dialog-title>user-dialog works!</h2>
 <mat-dialog-content class="mat-typography">
     <form [formGroup]="userForm" class="user-form w-100">
+        <!-- id -->
         <mat-form-field appearance="fill" class="d-block mb-3">
             <mat-label>Enter id</mat-label>
             <input matInput placeholder="id" [formControl]="id">
             <!-- <mat-error *ngIf="email.invalid && email.errors?.required">Email is required</mat-error> -->
             <!-- <mat-error *ngIf="email.invalid && email.errors?.email">Email is not valid</mat-error> -->
         </mat-form-field>
-
+        <!-- title -->
+        <mat-form-field appearance="fill" class="d-block mb-3">
+            <mat-label>Enter title</mat-label>
+            <input matInput placeholder="Title" [formControl]="title">
+            <!-- <mat-error *ngIf="email.invalid && email.errors?.required">Email is required</mat-error> -->
+            <!-- <mat-error *ngIf="email.invalid && email.errors?.email">Email is not valid</mat-error> -->
+        </mat-form-field>
+        <!-- type -->
+        <mat-form-field appearance="fill" class="d-block mb-3">
+            <mat-label>Enter type</mat-label>
+            <input matInput placeholder="Type" [formControl]="type">
+            <!-- <mat-error *ngIf="email.invalid && email.errors?.required">Email is required</mat-error> -->
+            <!-- <mat-error *ngIf="email.invalid && email.errors?.email">Email is not valid</mat-error> -->
+        </mat-form-field>
+        <!-- min -->
+        <mat-form-field appearance="fill" class="d-block mb-3">
+            <mat-label>Enter min value</mat-label>
+            <input matInput placeholder="Min" [formControl]="min">
+            <!-- <mat-error *ngIf="email.invalid && email.errors?.required">Email is required</mat-error> -->
+            <!-- <mat-error *ngIf="email.invalid && email.errors?.email">Email is not valid</mat-error> -->
+        </mat-form-field>
+        <!-- min -->
+        <mat-form-field appearance="fill" class="d-block mb-3">
+            <mat-label>Enter max value</mat-label>
+            <input matInput placeholder="Max" [formControl]="max">
+            <!-- <mat-error *ngIf="email.invalid && email.errors?.required">Email is required</mat-error> -->
+            <!-- <mat-error *ngIf="email.invalid && email.errors?.email">Email is not valid</mat-error> -->
+        </mat-form-field>
+        <!-- max_length -->
+        <mat-form-field appearance="fill" class="d-block mb-3">
+            <mat-label>Enter max length</mat-label>
+            <input matInput placeholder="Max length" [formControl]="max_length">
+            <!-- <mat-error *ngIf="email.invalid && email.errors?.required">Email is required</mat-error> -->
+            <!-- <mat-error *ngIf="email.invalid && email.errors?.email">Email is not valid</mat-error> -->
+        </mat-form-field>
+        <!-- order -->
+        <mat-form-field appearance="fill" class="d-block mb-3">
+            <mat-label>Enter order</mat-label>
+            <input matInput placeholder="Order" [formControl]="order">
+            <!-- <mat-error *ngIf="email.invalid && email.errors?.required">Email is required</mat-error> -->
+            <!-- <mat-error *ngIf="email.invalid && email.errors?.email">Email is not valid</mat-error> -->
+        </mat-form-field>
+        <div class="d-flex align-items-center">
+            <!-- createdAt -->
+            <mat-form-field appearance="fill">
+                <mat-label>Created At</mat-label>
+                <input matInput placeholder="Created At" [formControl]="createdAt"
+                    [value]="createdAt.value | date: 'M/d/yy, H:mm'">
+            </mat-form-field>
+            <!-- updatedAt -->
+            <mat-form-field appearance="fill">
+                <mat-label>Updated At</mat-label>
+                <input matInput placeholder="Updated At" [formControl]="updatedAt"
+                    [value]="updatedAt.value | date: 'M/d/yy, H:mm'">
+            </mat-form-field>
+            <!-- isRequired -->
+            <mat-slide-toggle [formControl]="isRequired" class="ml-4">Is Required</mat-slide-toggle>
+        </div>
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

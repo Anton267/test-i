@@ -5,11 +5,12 @@ import { UserFormsRoutingModule } from './user-forms-routing.module';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { UserTableComponent } from './user-table/user-table.component';
+import { SharedModule } from 'src/app/shared-modules/shared.module';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
 import { MaterialModule } from 'src/app/shared-modules/material.module';
-import { SharedModule } from 'src/app/shared-modules/shared.module';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -21,12 +22,13 @@ import { SharedModule } from 'src/app/shared-modules/shared.module';
   imports: [
     CommonModule,
     UserFormsRoutingModule,
+    SharedModule,
     MaterialModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
-    SharedModule,
+    MatSlideToggleModule,
   ],
   entryComponents: [UserDialogComponent]
 })
