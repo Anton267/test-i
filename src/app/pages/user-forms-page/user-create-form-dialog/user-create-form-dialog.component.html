@@ -1,14 +1,6 @@
 <h2 mat-dialog-title>User create form dialog</h2>
 <mat-dialog-content class="mat-typography">
     <form [formGroup]="userCreateForm" class="user-form w-100">
-        <!-- id -->
-        <!-- <mat-form-field *ngIf="!data" appearance="fill" class="d-block mb-3">
-            <mat-label>Enter id</mat-label>
-            <input matInput placeholder="id" [formControl]="id">
-            <mat-error *ngIf="id.invalid && id.errors?.required">Id is required</mat-error>
-            <mat-error *ngIf="id.invalid && id.errors?.pattern">Id can has only numbers</mat-error>
-        </mat-form-field> -->
-        <!-- title -->
         <mat-form-field appearance="fill" class="d-block mb-3">
             <mat-label>Enter value</mat-label>
             <input matInput placeholder="Value" [formControl]="value">
