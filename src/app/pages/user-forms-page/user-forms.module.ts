@@ -8,12 +8,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { UserTableComponent } from './user-table/user-table.component';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
+import { UserDialogComponent } from './user-dialog/user-dialog.component';
 
 
 @NgModule({
   declarations: [
     UserFormsPageComponent,
     UserTableComponent,
+    UserDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -23,6 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
-  ]
+  ],
+  entryComponents: [UserDialogComponent]
 })
 export class UserFormsModule { }

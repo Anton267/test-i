@@ -1,9 +1,11 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/shared/api.service';
+import { UserDialogComponent } from '../user-dialog/user-dialog.component';
 
 @Component({
   selector: 'app-user-table',
@@ -27,9 +29,17 @@ export class UserTableComponent implements OnInit {
 
   constructor(
     private api: ApiService,
+    public dialog: MatDialog,
   ) { }
 
-  applyFilter(event: Event): void {
+  public openDialog(): void {
+    const dialogRef = this.dialog.open(UserDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  public applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
     if (this.dataSource.paginator) {

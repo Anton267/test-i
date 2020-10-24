@@ -30,7 +30,7 @@
                 <div class="element-detail d-flex"
                     [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                     <div class="opened-element d-flex">
-                        <button mat-stroked-button color="primary" class="mr-3">View</button>
+                        <button mat-stroked-button color="primary" class="mr-3" (click)="openDialog()">View</button>
                         <button mat-stroked-button color="accent" class="mr-3">Edit</button>
                         <button mat-stroked-button color="warn" class="delete-button"><span>Delete</span>
                             <mat-icon>delete_outline</mat-icon>
