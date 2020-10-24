@@ -40,7 +40,9 @@ export class UserDialogComponent implements OnInit {
       return prev < curr.form_field_id ? curr.form_field_id : prev;
     }, 0);
     this.dialog.open(UserCreateFormDialogComponent, {
-      minWidth: '50vw',
+      minWidth: '320px',
+      width: '50vw',
+      maxWidth: '600px',
       data: { fieldId: this.data.id, formId: max + 1 }
     }).afterClosed().subscribe(res => {
       if (res) {
