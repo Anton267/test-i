@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
-import { AbstractControl, FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiService } from 'src/app/shared/api.service';
+import { CreateFormData } from '../models/create-form-data.model';
 
 @Component({
   selector: 'app-user-create-form-dialog',
@@ -17,7 +18,7 @@ export class UserCreateFormDialogComponent {
     private api: ApiService,
     public dialogRef: MatDialogRef<UserCreateFormDialogComponent>,
     public dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: { fieldId: number, formId: number },
+    @Inject(MAT_DIALOG_DATA) public data: CreateFormData,
   ) {
     this.userCreateForm = new FormControl('', Validators.required);
   }
@@ -47,10 +48,6 @@ export class UserCreateFormDialogComponent {
   public closeDialog(): void {
     this.dialogRef.close(this.isHasChanges);
   }
-
-  // public get value(): AbstractControl {
-  //   return this.userCreateForm.get('value');
-  // }
 
 }
 
