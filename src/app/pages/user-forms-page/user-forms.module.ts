@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
 import { MaterialModule } from 'src/app/shared-modules/material.module';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { UserCreateFormDialogComponent } from './user-create-form-dialog/user-create-form-dialog.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     UserFormsPageComponent,
     UserTableComponent,
     UserDialogComponent,
+    UserCreateFormDialogComponent,
   ],
   imports: [
     CommonModule,
