@@ -45,7 +45,7 @@ export class ApiService {
     );
   }
 
-  public getFormById(id: number | string): Observable<FormId | Errors> {
+  public getFormById(id: number | string): Observable<FormId> {
     const url = this.baseUrl + `/forms/${id}`;
     return this.http.get<FormId>(url).pipe(
       catchError((err: Errors) => {
@@ -57,7 +57,7 @@ export class ApiService {
         }
         console.error(error);
         this.toastr.error(error, 'Error');
-        return of(err);
+        return of(null);
       })
     );
   }

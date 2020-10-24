@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormArray, FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Observable, of } from 'rxjs';
 import { ApiService } from 'src/app/shared/api.service';
 import { UserCreateFormDialogComponent } from '../user-create-form-dialog/user-create-form-dialog.component';
 
@@ -11,7 +12,7 @@ import { UserCreateFormDialogComponent } from '../user-create-form-dialog/user-c
 })
 export class UserDialogComponent implements OnInit {
 
-  public userForm = new FormArray([]);
+  public userForm: FormArray;
   private isHasChanges = false;
 
   constructor(
@@ -40,21 +41,32 @@ export class UserDialogComponent implements OnInit {
       data: { fieldId: this.data.id }
     }).afterClosed().subscribe(res => {
       if (res) {
-
+        this.getFormById(this.data.id);
       }
     });
   }
 
-  ngOnInit(): void {
+  private getFormById(id: number): void {
+    this.api.getFormById(id).subscribe(
+      form => {
+        this.data = form.data;
+        this.createFormArray();
+      }
+    );
+  }
+
+  private createFormArray(): void {
+    const userForm = new FormArray([]);
     this.data.form_field_values.forEach(data => {
       const control = new FormControl(data.value, Validators.required);
-      this.userForm.push(control);
+      userForm.push(control);
     });
+    this.userForm = userForm;
+  }
+
+  ngOnInit(): void {
+    this.createFormArray();
     console.log(this.data);
-    this.api.getFormById(this.data.id).subscribe(
-      e => console.log(e)
-    );
-    // console.log(this.userForm);
   }
 
 }
