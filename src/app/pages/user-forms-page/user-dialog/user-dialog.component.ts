@@ -35,12 +35,16 @@ export class UserDialogComponent implements OnInit {
   }
 
   public openNewFormDialog(): void {
+    const max = this.data.form_field_values.reduce((prev, curr) => {
+      return prev < curr.form_field_id ? curr.form_field_id : prev;
+    }, 0);
     this.dialog.open(UserCreateFormDialogComponent, {
       minWidth: '50vw',
-      data: { fieldId: this.data.id }
+      data: { fieldId: this.data.id, formId: max + 1 }
     }).afterClosed().subscribe(res => {
       if (res) {
         this.getFormById(this.data.id);
+        this.isHasChanges = true;
       }
     });
   }

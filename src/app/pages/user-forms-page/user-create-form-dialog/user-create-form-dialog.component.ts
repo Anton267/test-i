@@ -18,21 +18,29 @@ export class UserCreateFormDialogComponent {
     private api: ApiService,
     public dialogRef: MatDialogRef<UserCreateFormDialogComponent>,
     public dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: { fieldId: number },
+    @Inject(MAT_DIALOG_DATA) public data: { fieldId: number, formId: number },
   ) {
     this.userCreateForm = fb.group({
-      id: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       value: ['', [Validators.required]],
     });
+    // if (data) {
+    //   this.userCreateForm = fb.group({
+    //     value: ['', [Validators.required]],
+    //   });
+    // } else {
+    //   this.userCreateForm = fb.group({
+    //     id: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+    //     value: ['', [Validators.required]],
+    //   });
+    // }
   }
 
   public createForm(): void {
-    console.log(this.data);
     this.data ? this.updateForm() : this.create();
   }
 
   public create(): void {
-    const body = { form_field_values: [{ form_field_id: this.id.value, value: this.value.value }] };
+    const body = { form_field_values: [{ form_field_id: 1, value: this.value.value }] };
     this.api.createForm(body).subscribe(e => {
       console.log(e);
       this.userCreateForm.reset();
@@ -41,7 +49,7 @@ export class UserCreateFormDialogComponent {
   }
 
   public updateForm(): void {
-    const body = { form_field_values: [{ form_field_id: this.id.value, value: this.value.value }] };
+    const body = { form_field_values: [{ form_field_id: this.data.formId, value: this.value.value }] };
     this.api.updateForm(body, this.data.fieldId).subscribe(e => {
       console.log(e);
       this.isHasChanges = true;

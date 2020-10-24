@@ -81,24 +81,24 @@ export class UserTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getForms();
-    // this.api.getFormList().pipe(
-    //   catchError((err: Errors) => {
-    //     let error: string;
-    //     try {
-    //       error = err.error.errors[0].title;
-    //     } catch (error) {
-    //       error = null;
-    //     }
-    //     console.error(error);
-    //     this.toastr.error(error, 'Error');
-    //     return of(null);
-    //   })
-    // ).subscribe(formList => {
-    //   console.log(formList);
-    //   this.dataSource = new MatTableDataSource(formList.data);
-    //   this.dataSource.paginator = this.paginator;
-    //   this.dataSource.sort = this.sort;
-    // });
+    this.api.getFormList().pipe(
+      // catchError((err: Errors) => {
+      //   let error: string;
+      //   try {
+      //     error = err.error.errors[0].title;
+      //   } catch (error) {
+      //     error = null;
+      //   }
+      //   console.error(error);
+      //   this.toastr.error(error, 'Error');
+      //   return of(null);
+      // })
+    ).subscribe(formList => {
+      console.log(formList);
+      // this.dataSource = new MatTableDataSource(formList.data);
+      // this.dataSource.paginator = this.paginator;
+      // this.dataSource.sort = this.sort;
+    });
   }
 
 }
