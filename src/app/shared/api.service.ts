@@ -24,7 +24,19 @@ export class ApiService {
 
   public getForms(): Observable<Forms> {
     const url = this.baseUrl + '/forms';
-    return this.http.get<Forms>(url);
+    return this.http.get<Forms>(url).pipe(
+      catchError((err: Errors) => {
+        let error: string;
+        try {
+          error = err.error.errors[0].title;
+        } catch (error) {
+          error = null;
+        }
+        console.error(error);
+        this.toastr.error(error, 'Error');
+        return of(null);
+      })
+    );
   }
 
   public createForm(body: CreateFormBody): Observable<Form | Errors> {
