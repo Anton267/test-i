@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "bootstrap"
+
 @include media-breakpoint-up(md)
     ::ng-deep
-         mat-form-field
+
+        .mat-form-field-wrapper
+            font-size: 1rem
+
+        .mat-form-field
             font-size: 1.2rem !important
