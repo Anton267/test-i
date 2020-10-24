@@ -40,6 +40,7 @@ export class UserDialogComponent implements OnInit {
       data: { fieldId: this.data.id }
     }).afterClosed().subscribe(res => {
       if (res) {
+
       }
     });
   }
@@ -50,6 +51,9 @@ export class UserDialogComponent implements OnInit {
       this.userForm.push(control);
     });
     console.log(this.data);
+    this.api.getFormById(this.data.id).subscribe(
+      e => console.log(e)
+    );
     // console.log(this.userForm);
   }
 

@@ -27,7 +27,7 @@ export class UserCreateFormDialogComponent {
   }
 
   public createForm(): void {
-    console.log(this.data.fieldId)
+    console.log(this.data.fieldId);
     this.data.fieldId ? this.updateForm() : this.create();
   }
 
@@ -62,4 +62,5 @@ export class UserCreateFormDialogComponent {
   }
 
 }
+
 
