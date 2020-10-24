@@ -39,10 +39,10 @@ export class ApiService {
     );
   }
 
-  public createForm(body: CreateFormBody): Observable<Form | Errors> {
+  public createForm(body: CreateFormBody): Observable<FormId> {
     const url = this.baseUrl + '/forms';
-    return this.http.post<Form>(url, body).pipe(
-      tap(() => this.toastr.success('Success')),
+    return this.http.post<FormId>(url, body).pipe(
+      tap((e) => this.toastr.success(`Id is ${e.data.id}`, 'Success')),
       catchError((err: Errors) => {
         let error: string;
         try {
@@ -52,7 +52,7 @@ export class ApiService {
         }
         console.error(error);
         this.toastr.error(error, 'Error');
-        return of(err);
+        return of(null);
       })
     );
   }
