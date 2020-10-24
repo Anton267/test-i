@@ -11,6 +11,7 @@ import { ApiService } from 'src/app/shared/api.service';
 export class UserDialogComponent implements OnInit {
 
   public userForm = new FormArray([]);
+  private isHasChanges = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Form,
@@ -21,8 +22,14 @@ export class UserDialogComponent implements OnInit {
   public saveChanges(form: FormControl, i: number): void {
     const fieldId = this.data.form_field_values[i].form_field_id;
     const body = { form_field_values: [{ form_field_id: fieldId, value: form.value }] };
-    this.api.updateForm(body, this.data.id).subscribe(e => console.log(e));
-    // this.dialogRef.close();
+    this.api.updateForm(body, this.data.id).subscribe(e => {
+      console.log(e);
+      this.isHasChanges = true;
+    });
+  }
+
+  public closeDialog(): void {
+    this.dialogRef.close(this.isHasChanges);
   }
 
   ngOnInit(): void {

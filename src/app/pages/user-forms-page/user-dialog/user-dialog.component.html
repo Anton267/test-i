@@ -18,11 +18,12 @@
                     <input matInput [formControlName]="i">
                     <mat-error *ngIf="form.invalid && form.errors?.required">Required</mat-error>
                 </mat-form-field>
-                <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="saveChanges(form, i)">Save</button>
+                <button mat-raised-button color="primary" [disabled]="form.invalid"
+                    (click)="saveChanges(form, i)">Save</button>
             </div>
         </ng-container>
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+    <button mat-button cdkFocusInitial (click)="closeDialog()">Close</button>
 </mat-dialog-actions>

@@ -37,13 +37,17 @@ export class UserTableComponent implements OnInit {
   ) { }
 
   public deleteForm(id: string | number): void {
-    this.api.deleteForm(id).subscribe(e => this.getForms());
+    this.api.deleteForm(id).subscribe(() => this.getForms());
   }
 
   public openDialog(formValue: FormValues): void {
     this.dialog.open(UserDialogComponent, {
       width: '80vw',
       data: { ...formValue }
+    }).afterClosed().subscribe(res => {
+      if (res) {
+        this.getForms();
+      }
     });
   }
 
@@ -77,6 +81,7 @@ export class UserTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getForms();
     // this.api.getFormList().pipe(
     //   catchError((err: Errors) => {
     //     let error: string;
@@ -95,10 +100,6 @@ export class UserTableComponent implements OnInit {
     //   this.dataSource.paginator = this.paginator;
     //   this.dataSource.sort = this.sort;
     // });
-    this.getForms();
-    // const body = { form_field_values: [{ form_field_id: 33, value: 'TEST VALUE' }] };
-    // this.api.createForm(body).subscribe(e => console.log(e));
-    // this.api.getForms().subscribe(e => console.log(e));
   }
 
 }
