@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ApiService } from 'src/app/shared/api.service';
 
 @Component({
@@ -12,11 +12,13 @@ export class UserCreateFormDialogComponent {
 
   public userCreateForm: FormGroup;
   private isHasChanges = false;
+  @Input() private fieldId: number;
 
   constructor(
     fb: FormBuilder,
     private api: ApiService,
     public dialogRef: MatDialogRef<UserCreateFormDialogComponent>,
+    public dialog: MatDialog,
   ) {
     this.userCreateForm = fb.group({
       id: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
@@ -29,6 +31,14 @@ export class UserCreateFormDialogComponent {
     this.api.createForm(body).subscribe(e => {
       console.log(e);
       this.userCreateForm.reset();
+      this.isHasChanges = true;
+    });
+  }
+
+  public updateForm(): void {
+    const body = { form_field_values: [{ form_field_id: this.id.value, value: this.value.value }] };
+    this.api.updateForm(body, this.fieldId).subscribe(e => {
+      console.log(e);
       this.isHasChanges = true;
     });
   }

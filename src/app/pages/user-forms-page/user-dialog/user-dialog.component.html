@@ -13,13 +13,14 @@
                 <span> Updated: {{ data.form_field_values[i].updated_at | date: 'M/d/yy, H:mm' }} </span>
             </div>
             <div class="d-flex align-items-baseline">
-                <mat-form-field appearance="fill" class="w-100 mb-3 mr-2">
+                <mat-form-field appearance="fill" class="w-75 mb-3 mr-2">
                     <mat-label>Enter value</mat-label>
                     <input matInput [formControlName]="i">
                     <mat-error *ngIf="form.invalid && form.errors?.required">Required</mat-error>
                 </mat-form-field>
                 <button mat-raised-button color="primary" [disabled]="form.invalid"
-                    (click)="saveChanges(form, i)">Save</button>
+                    (click)="saveChanges(form, i)" class="mr-3">Save</button>
+                <button mat-stroked-button (click)="openNewFormDialog()" #createButton>Create Form</button>
             </div>
         </ng-container>
     </form>

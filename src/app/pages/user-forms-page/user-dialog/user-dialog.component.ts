@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormControl, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiService } from 'src/app/shared/api.service';
+import { UserCreateFormDialogComponent } from '../user-create-form-dialog/user-create-form-dialog.component';
 
 @Component({
   selector: 'app-user-dialog',
@@ -17,6 +18,7 @@ export class UserDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: Form,
     public dialogRef: MatDialogRef<UserDialogComponent>,
     private api: ApiService,
+    public dialog: MatDialog,
   ) { }
 
   public saveChanges(form: FormControl, i: number): void {
@@ -30,6 +32,15 @@ export class UserDialogComponent implements OnInit {
 
   public closeDialog(): void {
     this.dialogRef.close(this.isHasChanges);
+  }
+
+  public openNewFormDialog(): void {
+    this.dialog.open(UserCreateFormDialogComponent, {
+      minWidth: '50vw'
+    }).afterClosed().subscribe(res => {
+      if (res) {
+      }
+    });
   }
 
   ngOnInit(): void {
