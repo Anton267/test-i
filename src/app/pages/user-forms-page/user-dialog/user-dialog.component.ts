@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormControl, Validators } from '@angular/forms';
+import { FormArray, FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Observable, of } from 'rxjs';
 import { ApiService } from 'src/app/shared/api.service';
 import { UserCreateFormDialogComponent } from '../user-create-form-dialog/user-create-form-dialog.component';
 
