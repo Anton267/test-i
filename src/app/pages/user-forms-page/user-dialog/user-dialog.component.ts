@@ -30,8 +30,8 @@ export class UserDialogComponent implements OnInit {
       const control = new FormControl(data.value, Validators.required);
       this.userForm.push(control);
     });
-    console.log(this.data.form_field_values);
-    console.log(this.userForm);
+    console.log(this.data);
+    // console.log(this.userForm);
   }
 
 }
