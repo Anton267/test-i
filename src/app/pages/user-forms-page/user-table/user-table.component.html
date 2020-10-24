@@ -47,7 +47,7 @@
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
 
 </table>
-<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+<mat-paginator [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize"></mat-paginator>
 
 <div class="d-flex justify-content-end mt-5">
     <button mat-stroked-button (click)="openNewFormDialog()" #createButton>Create Form</button>

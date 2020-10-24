@@ -30,6 +30,8 @@ export class UserTableComponent implements OnInit {
   @ViewChild(MatPaginator) public paginator: MatPaginator;
   @ViewChild(MatSort) public sort: MatSort;
   public expandedElement: string;
+  public pageSizeOptions: number[] = null;
+  public pageSize: number = null;
 
   constructor(
     private api: ApiService,
@@ -69,9 +71,12 @@ export class UserTableComponent implements OnInit {
   private getForms(): void {
     this.api.getForms().subscribe(formList => {
       console.log(formList);
-      this.dataSource = new MatTableDataSource(formList.data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      setTimeout(() => {
+        this.dataSource = new MatTableDataSource(formList.data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+      this.setPaginator(formList.meta.per_page, formList.meta.pages_count);
     });
   }
 
@@ -79,26 +84,42 @@ export class UserTableComponent implements OnInit {
     this.api.deleteForm(id).subscribe(() => this.getForms());
   }
 
+  private setPaginator(perPage: number, pagesCount: number): void {
+    const paginatorStep = Math.floor(perPage / pagesCount);
+    const maxPaginatorCount = Math.max(perPage / paginatorStep);
+    const pageSizeOptions = [];
+    let count = 1;
+    while (count <= maxPaginatorCount) {
+      pageSizeOptions.push(paginatorStep * count);
+      count++;
+    }
+    if (perPage > pageSizeOptions[pageSizeOptions.length - 1]) {
+      pageSizeOptions.push(perPage);
+    }
+    this.pageSizeOptions = pageSizeOptions;
+    this.pageSize = pagesCount;
+  }
+
   ngOnInit(): void {
     this.getForms();
-    this.api.getFormList().pipe(
-      // catchError((err: Errors) => {
-      //   let error: string;
-      //   try {
-      //     error = err.error.errors[0].title;
-      //   } catch (error) {
-      //     error = null;
-      //   }
-      //   console.error(error);
-      //   this.toastr.error(error, 'Error');
-      //   return of(null);
-      // })
-    ).subscribe(formList => {
-      console.log(formList);
-      // this.dataSource = new MatTableDataSource(formList.data);
-      // this.dataSource.paginator = this.paginator;
-      // this.dataSource.sort = this.sort;
-    });
+    // this.api.getFormList().pipe(
+    //   // catchError((err: Errors) => {
+    //   //   let error: string;
+    //   //   try {
+    //   //     error = err.error.errors[0].title;
+    //   //   } catch (error) {
+    //   //     error = null;
+    //   //   }
+    //   //   console.error(error);
+    //   //   this.toastr.error(error, 'Error');
+    //   //   return of(null);
+    //   // })
+    // ).subscribe(formList => {
+    //   console.log(formList);
+    //   // this.dataSource = new MatTableDataSource(formList.data);
+    //   // this.dataSource.paginator = this.paginator;
+    //   // this.dataSource.sort = this.sort;
+    // });
   }
 
 }
