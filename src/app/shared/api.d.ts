@@ -97,7 +97,7 @@ type FormValues = {
 
 type Errors = {
     error: {
-        errors: [
+        errors: [{
             code: null,
             id: string,
             meta: [{
@@ -105,6 +105,6 @@ type Errors = {
             }],
             status: number,
             title: string,
-        ]
+        }]
     }
 };
