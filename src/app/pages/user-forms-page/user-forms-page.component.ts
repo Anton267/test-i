@@ -22,7 +22,9 @@ export class UserFormsPageComponent implements OnInit {
   }
 
   public openDialog(): void {
-    this.dialog.open(UserCreateFormDialogComponent);
+    this.dialog.open(UserCreateFormDialogComponent, {
+      minWidth: '50vw'
+    });
   }
 
   public logout(): void {
