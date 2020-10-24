@@ -26,6 +26,7 @@ export class UserDialogComponent implements OnInit {
     const body = { form_field_values: [{ form_field_id: fieldId, value: form.value }] };
     this.api.updateForm(body, this.data.id).subscribe(e => {
       console.log(e);
+      this.getFormById(this.data.id);
       this.isHasChanges = true;
     });
   }
