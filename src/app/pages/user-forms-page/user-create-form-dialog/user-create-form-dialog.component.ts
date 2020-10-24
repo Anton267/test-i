@@ -16,7 +16,7 @@ export class UserCreateFormDialogComponent implements OnInit {
     private api: ApiService,
   ) {
     this.userCreateForm = fb.group({
-      id: ['', [Validators.required]],
+      id: ['', [Validators.required, Validators.pattern(/^[0-9]$/)]],
       value: ['', [Validators.required]],
     });
   }
