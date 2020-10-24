@@ -4,9 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ToastrService } from 'ngx-toastr';
-import { of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 import { ApiService } from 'src/app/shared/api.service';
 import { UserCreateFormDialogComponent } from '../user-create-form-dialog/user-create-form-dialog.component';
 import { UserDialogComponent } from '../user-dialog/user-dialog.component';
@@ -36,7 +33,6 @@ export class UserTableComponent implements OnInit {
   constructor(
     private api: ApiService,
     public dialog: MatDialog,
-    private toastr: ToastrService
   ) { }
 
   public openNewFormDialog(): void {
@@ -103,22 +99,11 @@ export class UserTableComponent implements OnInit {
   ngOnInit(): void {
     this.getForms();
     // this.api.getFormList().pipe(
-    //   // catchError((err: Errors) => {
-    //   //   let error: string;
-    //   //   try {
-    //   //     error = err.error.errors[0].title;
-    //   //   } catch (error) {
-    //   //     error = null;
-    //   //   }
-    //   //   console.error(error);
-    //   //   this.toastr.error(error, 'Error');
-    //   //   return of(null);
-    //   // })
     // ).subscribe(formList => {
     //   console.log(formList);
-    //   // this.dataSource = new MatTableDataSource(formList.data);
-    //   // this.dataSource.paginator = this.paginator;
-    //   // this.dataSource.sort = this.sort;
+    //   this.dataSource = new MatTableDataSource(formList.data);
+    //   this.dataSource.paginator = this.paginator;
+    //   this.dataSource.sort = this.sort;
     // });
   }
 
