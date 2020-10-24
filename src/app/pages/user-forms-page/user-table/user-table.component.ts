@@ -80,7 +80,9 @@ export class UserTableComponent implements OnInit {
 
   public deleteForm(id: number): void {
     this.dialog.open(DialogConfirmComponent, {
-      minWidth: '50vw'
+      minWidth: '320px',
+      width: '50vw',
+      maxWidth: '600px',
     }).afterClosed().subscribe(res => {
       if (res) {
         this.api.deleteForm(id).subscribe(() => this.getForms());
