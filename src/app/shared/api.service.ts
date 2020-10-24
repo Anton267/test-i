@@ -81,7 +81,7 @@ export class ApiService {
     );
   }
 
-  public deleteForm(id: number | string): Observable<void | Errors> {
+  public deleteForm(id: number): Observable<void | Errors> {
     const url = this.baseUrl + `/forms/${id}`;
     return this.http.delete<void>(url).pipe(
       tap(() => this.toastr.success('Success')),

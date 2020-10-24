@@ -87,7 +87,7 @@ export class UserTableComponent implements OnInit {
     });
   }
 
-  public deleteForm(id: string | number): void {
+  public deleteForm(id: number): void {
     this.api.deleteForm(id).subscribe(() => this.getForms());
   }
 
