@@ -34,9 +34,10 @@ export class UserDialogComponent implements OnInit {
     this.dialogRef.close(this.isHasChanges);
   }
 
-  public openNewFormDialog(): void {
+  public openNewFormDialog(i: number): void {
     this.dialog.open(UserCreateFormDialogComponent, {
-      minWidth: '50vw'
+      minWidth: '50vw',
+      data: { fieldId: this.data.id }
     }).afterClosed().subscribe(res => {
       if (res) {
       }

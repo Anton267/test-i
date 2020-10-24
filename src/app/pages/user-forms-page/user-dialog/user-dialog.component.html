@@ -18,9 +18,9 @@
                     <input matInput [formControlName]="i">
                     <mat-error *ngIf="form.invalid && form.errors?.required">Required</mat-error>
                 </mat-form-field>
-                <button mat-raised-button color="primary" [disabled]="form.invalid"
-                    (click)="saveChanges(form, i)" class="mr-3">Save</button>
-                <button mat-stroked-button (click)="openNewFormDialog()" #createButton>Create Form</button>
+                <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="saveChanges(form, i)"
+                    class="mr-3">Save</button>
+                <button mat-stroked-button (click)="openNewFormDialog(i)" #createButton>Create Form</button>
             </div>
         </ng-container>
     </form>

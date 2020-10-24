@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiService } from 'src/app/shared/api.service';
 
 @Component({
@@ -12,13 +12,13 @@ export class UserCreateFormDialogComponent {
 
   public userCreateForm: FormGroup;
   private isHasChanges = false;
-  @Input() private fieldId: number;
 
   constructor(
     fb: FormBuilder,
     private api: ApiService,
     public dialogRef: MatDialogRef<UserCreateFormDialogComponent>,
     public dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) public data: { fieldId: number },
   ) {
     this.userCreateForm = fb.group({
       id: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
@@ -27,6 +27,11 @@ export class UserCreateFormDialogComponent {
   }
 
   public createForm(): void {
+    console.log(this.data.fieldId)
+    this.data.fieldId ? this.updateForm() : this.create();
+  }
+
+  public create(): void {
     const body = { form_field_values: [{ form_field_id: this.id.value, value: this.value.value }] };
     this.api.createForm(body).subscribe(e => {
       console.log(e);
@@ -37,9 +42,10 @@ export class UserCreateFormDialogComponent {
 
   public updateForm(): void {
     const body = { form_field_values: [{ form_field_id: this.id.value, value: this.value.value }] };
-    this.api.updateForm(body, this.fieldId).subscribe(e => {
+    this.api.updateForm(body, this.data.fieldId).subscribe(e => {
       console.log(e);
       this.isHasChanges = true;
+      this.closeDialog();
     });
   }
 
