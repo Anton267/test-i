@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/shared/api.service';
 
@@ -7,7 +7,7 @@ import { ApiService } from 'src/app/shared/api.service';
   templateUrl: './user-create-form-dialog.component.html',
   styleUrls: ['./user-create-form-dialog.component.sass']
 })
-export class UserCreateFormDialogComponent implements OnInit {
+export class UserCreateFormDialogComponent {
 
   public userCreateForm: FormGroup;
 
@@ -23,7 +23,10 @@ export class UserCreateFormDialogComponent implements OnInit {
 
   public createForm(): void {
     const body = { form_field_values: [{ form_field_id: this.id.value, value: this.value.value }] };
-    this.api.createForm(body).subscribe(e => console.log(e));
+    this.api.createForm(body).subscribe(e => {
+      console.log(e);
+      this.userCreateForm.reset();
+    });
   }
 
   public get id(): AbstractControl {
@@ -34,7 +37,5 @@ export class UserCreateFormDialogComponent implements OnInit {
     return this.userCreateForm.get('value');
   }
 
-  ngOnInit(): void {
-  }
-
 }
+
