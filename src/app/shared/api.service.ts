@@ -17,28 +17,14 @@ export class ApiService {
     private toastr: ToastrService
   ) { }
 
-  public getFormList(): Observable<FormList | Errors> {
+  public getFormList(): Observable<FormList> {
     const url = this.baseUrl + '/form_fields';
-    return this.http.get<FormList>(url).pipe(
-      tap(() => this.toastr.success('Success')),
-      catchError((err: Errors) => {
-        console.error(err.error.errors[0]);
-        this.toastr.error(err.error.errors[0].title, 'Error');
-        return of(err);
-      })
-    );
+    return this.http.get<FormList>(url);
   }
 
-  public getForms(): Observable<Forms | Errors> {
+  public getForms(): Observable<Forms> {
     const url = this.baseUrl + '/forms';
-    return this.http.get<Forms>(url).pipe(
-      tap(() => this.toastr.success('Success')),
-      catchError((err: Errors) => {
-        console.error(err.error.errors[0]);
-        this.toastr.error(err.error.errors[0].title, 'Error');
-        return of(err);
-      })
-    );
+    return this.http.get<Forms>(url);
   }
 
   public createForm(body: CreateFormBody): Observable<Form | Errors> {
@@ -46,8 +32,14 @@ export class ApiService {
     return this.http.post<Form>(url, body).pipe(
       tap(() => this.toastr.success('Success')),
       catchError((err: Errors) => {
-        console.error(err.error.errors[0]);
-        this.toastr.error(err.error.errors[0].title, 'Error');
+        let error: string;
+        try {
+          error = err.error.errors[0].title;
+        } catch (error) {
+          error = null;
+        }
+        console.error(error);
+        this.toastr.error(error, 'Error');
         return of(err);
       })
     );
@@ -58,8 +50,14 @@ export class ApiService {
     return this.http.get<Form>(url).pipe(
       tap(() => this.toastr.success('Success')),
       catchError((err: Errors) => {
-        console.error(err.error.errors[0]);
-        this.toastr.error(err.error.errors[0].title, 'Error');
+        let error: string;
+        try {
+          error = err.error.errors[0].title;
+        } catch (error) {
+          error = null;
+        }
+        console.error(error);
+        this.toastr.error(error, 'Error');
         return of(err);
       })
     );
@@ -70,8 +68,14 @@ export class ApiService {
     return this.http.post<Form>(url, body).pipe(
       tap(() => this.toastr.success('Success')),
       catchError((err: Errors) => {
-        console.error(err.error.errors[0]);
-        this.toastr.error(err.error.errors[0].title, 'Error');
+        let error: string;
+        try {
+          error = err.error.errors[0].title;
+        } catch (error) {
+          error = null;
+        }
+        console.error(error);
+        this.toastr.error(error, 'Error');
         return of(err);
       })
     );
@@ -82,8 +86,14 @@ export class ApiService {
     return this.http.delete<void>(url).pipe(
       tap(() => this.toastr.success('Success')),
       catchError((err: Errors) => {
-        console.error(err.error.errors[0]);
-        this.toastr.error(err.error.errors[0].title, 'Error');
+        let error: string;
+        try {
+          error = err.error.errors[0].title;
+        } catch (error) {
+          error = null;
+        }
+        console.error(error);
+        this.toastr.error(error, 'Error');
         return of(err);
       })
     );
