@@ -32,6 +32,6 @@ import { UserCreateFormDialogComponent } from './user-create-form-dialog/user-cr
     MatDialogModule,
     MatSlideToggleModule,
   ],
-  entryComponents: [UserDialogComponent]
+  entryComponents: [UserDialogComponent, UserCreateFormDialogComponent]
 })
 export class UserFormsModule { }
